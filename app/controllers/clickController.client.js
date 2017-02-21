@@ -2,32 +2,37 @@
 
 (function () {
 
-   var addButton = document.querySelector('.btn-add');
-   var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = appUrl + '/api/:id/clicks';
+   var searchForm = document.querySelector('.searchBooks')
 
-   function updateClickCount (data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
+
+   function listBooks (data) {
+     var booksList = document.querySelector('.books')
+     var data = JSON.parse(data)
+     console.log(data.items)
+     data.items.forEach((book)=> {
+       var li = document.createElement("li")
+       li.innerHTML = book.volumeInfo.title
+
+       var img = document.createElement("img")
+       if (book.volumeInfo.imageLinks) {
+         img.setAttribute('src', book.volumeInfo.imageLinks.smallThumbnail)
+       }
+
+       li.append(img)
+       booksList.append(li)
+     })
+
    }
 
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
+   searchForm.addEventListener('submit', function (event) {
+     event.preventDefault()
+     var search = document.querySelector('.searchTerm').value
 
-   addButton.addEventListener('click', function () {
+     console.log(search);
+     var booksUrl = `https://www.googleapis.com/books/v1/volumes?q=${search}&printType=books&key=AIzaSyABcubhr0IIhjhjYwOQGvzeAMnXy2SK-Hg`
+     console.log(booksUrl)
+      ajaxFunctions.ajaxRequest('GET', booksUrl, listBooks);
+    });
 
-      ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
-   }, false);
-
-   deleteButton.addEventListener('click', function () {
-
-      ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
-   }, false);
 
 })();
