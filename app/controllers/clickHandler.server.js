@@ -37,8 +37,14 @@ function ClickHandler () {
 	};
 
 	this.addBook = function (req, res) {
-		console.log(req.params.bookId)
-		res.send(req.params)
+		var volumeId = req.params.bookId
+		Users
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { '$addToSet': { 'books': volumeId }})
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.json(result.books)
+			});
 	}
 
 }

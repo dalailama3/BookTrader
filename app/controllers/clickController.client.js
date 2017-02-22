@@ -27,8 +27,9 @@
          addButton.addEventListener('click', function (event) {
            console.log(this.getAttribute('data-bookId'))
            var bookId = this.getAttribute('data-bookId');
-           ajaxFunctions.ajaxRequest('POST', `/addBook/${bookId}`, function () {
-             console.log("book added")
+           ajaxFunctions.ajaxRequest('POST', `/addBook/${bookId}`, function (res) {
+             console.log("book added", res)
+
            })
          })
 
