@@ -7,6 +7,7 @@
 
    function listBooks (data) {
      var booksList = document.querySelector('.books')
+     booksList.innerHTML = ''
      var data = JSON.parse(data)
      console.log(data.items)
      data.items.forEach((book)=> {
@@ -19,6 +20,16 @@
        }
 
        li.append(img)
+
+       var addButton = document.createElement("button")
+       addButton.innerHTML = 'Add Book'
+       addButton.setAttribute('data-bookId', book.id)
+
+       addButton.addEventListener('click', function (event) {
+         console.log(this.getAttribute('data-bookId'))
+       })
+
+       li.append(addButton)
        booksList.append(li)
      })
 
@@ -27,11 +38,10 @@
    searchForm.addEventListener('submit', function (event) {
      event.preventDefault()
      var search = document.querySelector('.searchTerm').value
-
-     console.log(search);
      var booksUrl = `https://www.googleapis.com/books/v1/volumes?q=${search}&printType=books&key=AIzaSyABcubhr0IIhjhjYwOQGvzeAMnXy2SK-Hg`
-     console.log(booksUrl)
-      ajaxFunctions.ajaxRequest('GET', booksUrl, listBooks);
+
+     ajaxFunctions.ajaxRequest('GET', booksUrl, listBooks);
+
     });
 
 
