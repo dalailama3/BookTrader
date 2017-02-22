@@ -1,5 +1,4 @@
 'use strict';
-
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 
@@ -40,6 +39,8 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user.github);
 		});
+
+	app.post('/addBook/:bookId', clickHandler.addBook);
 
 	app.route('/auth/github')
 		.get(passport.authenticate('github'));

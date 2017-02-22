@@ -36,6 +36,11 @@ function ClickHandler () {
 			);
 	};
 
+	this.addBook = function (req, res) {
+		console.log(req.params.bookId)
+		res.send(req.params)
+	}
+
 }
 
 module.exports = ClickHandler;
