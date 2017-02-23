@@ -40,6 +40,8 @@ module.exports = function (app, passport) {
 			res.json(req.user.github);
 		});
 
+	app.get('/users', clickHandler.getUsers)
+
 	app.post('/addBook/:bookId', clickHandler.addBook);
 
 	app.route('/auth/github')

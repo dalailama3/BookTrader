@@ -47,6 +47,15 @@ function ClickHandler () {
 			});
 	}
 
+	this.getUsers = function (req, res) {
+		Users.find({})
+		.exec(function (err, result) {
+			if (err) { throw err; }
+
+			res.json(result)
+		});
+	}
+
 }
 
 module.exports = ClickHandler;

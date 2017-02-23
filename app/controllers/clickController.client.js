@@ -4,6 +4,18 @@
 
    var searchForm = document.querySelector('.searchBooks')
 
+   function listUsers (data) {
+     var usersList = document.querySelector('.users')
+     var data = JSON.parse(data)
+     data.forEach((user)=> {
+       var li  = document.createElement("li")
+       li.innerHTML = user.github.username
+       usersList.append(li)
+
+     })
+   }
+
+   ajaxFunctions.ajaxRequest('GET', '/users', listUsers);
 
    function listBooks (data) {
      var booksList = document.querySelector('.books')
