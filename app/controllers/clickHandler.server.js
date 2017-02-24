@@ -56,6 +56,18 @@ function ClickHandler () {
 		});
 	}
 
+	this.userBooks = function (req, res) {
+		Users
+			.findOne({ 'github.id': req.user.github.id })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.render('pages/userBooks', {
+					books: result.books
+				})
+			})
+	}
+
 }
 
 module.exports = ClickHandler;

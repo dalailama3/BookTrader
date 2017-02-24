@@ -203,12 +203,33 @@ span {
 	margin: 0;
 }
 
+ul.bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 ul.books {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
 li {
-    list-style: none;
-    display: block;
+  list-style: none;
+  display: block;
+  text-align: center;
+}
+
+.bookshelf li {
+  margin: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  cursor: pointer;
 }

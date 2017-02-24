@@ -42,6 +42,8 @@ module.exports = function (app, passport) {
 
 	app.get('/users', clickHandler.getUsers)
 
+	app.get('/userBooks', clickHandler.userBooks)
+
 	app.post('/addBook/:bookId', clickHandler.addBook);
 
 	app.route('/auth/github')

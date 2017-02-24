@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body>
+    <h1>My Books</h1>
+    <div class="hidden"><%= JSON.stringify(locals.books) %></div>
+
+    <ul class="bookshelf"></ul>
+
+
+
+  <script type="text/javascript" src="common/ajax-functions.js"></script>
+  <script type="text/javascript" src="controllers/userBooks.client.js"></script>
+  </body>
+
+
+</html>
