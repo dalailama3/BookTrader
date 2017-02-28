@@ -7,15 +7,21 @@
    function listUsers (data) {
      var usersList = document.querySelector('.users')
      var data = JSON.parse(data)
-     console.log(data)
-     data.forEach((user)=> {
-       var li  = document.createElement("li")
-       var a  = document.createElement("a")
-       a.setAttribute('href', `/users/${user.local.email}/books`)
 
-       a.innerHTML = user.local.email
-       li.append(a)
-       usersList.append(li)
+     var userEmail = document.querySelector('.userEmail').innerHTML
+    
+     data.forEach((user)=> {
+       if (user.local.email !== userEmail) {
+         var li  = document.createElement("li")
+         var a  = document.createElement("a")
+         a.setAttribute('href', `/users/${user.local.email}/books`)
+
+         a.innerHTML = user.local.email
+         li.append(a)
+         usersList.append(li)
+
+       }
+
 
      })
    }
