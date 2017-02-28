@@ -32,7 +32,7 @@ function ClickHandler () {
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
-				res.render('pages/userBooks', {
+				res.render('pages/myBooks', {
 					books: result.books
 
 				})

@@ -12,19 +12,25 @@
       <h1>My Books</h1>
     <% } %>
 
-    <div class="hidden"><%= JSON.stringify(locals.books) %></div>
+    <div class="books hidden"><%= JSON.stringify(locals.books) %></div>
+    <div class="curUserBooks hidden"><%= JSON.stringify(locals.curUserBooks) %></div>
 
     <ul class="bookshelf"></ul>
     <button class="trade">Offer Trade</button>
 
-    <%= console.log(locals) %>
     <div class="trade-view">
       <div class="left">
-        <ul class="bookshelf-list"></ul>
+        <ul class="bookshelf-curUser-list"></ul>
+
+
+
 
       </div>
 
-      <div class="right"></div>
+      <div class="right">
+        <ul class="bookshelf-otherUser-list"></ul>
+
+      </div>
     </div>
 
 

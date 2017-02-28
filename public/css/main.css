@@ -233,3 +233,7 @@ li {
 button {
   cursor: pointer;
 }
+
+.trade-view {
+  display: flex;
+}
