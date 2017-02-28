@@ -26,6 +26,11 @@
     ajaxFunctions.ajaxRequest('GET', booksUrl, listBooks);
   })
 
+  var tradeView = document.querySelector('.trade-view')
+  var tradeButton = document.querySelector('.trade')
+  tradeButton.addEventListener('click', function (event) {
+    console.log("finish the project")
+  })
 
 
 

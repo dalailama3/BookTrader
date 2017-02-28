@@ -6,8 +6,8 @@
   </head>
 
   <body>
-    <% if (locals.displayName) { %>
-      <h1><%= locals.displayName %>'s Books</h1>
+    <% if (locals.email) { %>
+      <h1><%= locals.email %>'s Books</h1>
     <% } else { %>
       <h1>My Books</h1>
     <% } %>
@@ -15,7 +15,17 @@
     <div class="hidden"><%= JSON.stringify(locals.books) %></div>
 
     <ul class="bookshelf"></ul>
+    <button class="trade">Offer Trade</button>
 
+    <%= console.log(locals) %>
+    <div class="trade-view">
+      <div class="left">
+        <ul class="bookshelf-list"></ul>
+
+      </div>
+
+      <div class="right"></div>
+    </div>
 
 
 

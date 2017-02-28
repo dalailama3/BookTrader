@@ -40,21 +40,31 @@ function ClickHandler () {
 	}
 
 	this.showUserBooks = function (req, res) {
+		var curUserBooks;
 		Users
 			.findOne({ 'local.email': req.params.email })
+
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
-				res.render('pages/userBooks', {
-					books: result.books,
-					displayName: result.local.email
+				Users
+					.findOne({ 'local.email': req.user.local.email })
+					.exec(function (err, r) {
+						if (err) { throw err; }
+						res.render('pages/userBooks', {
+							books: result.books,
+							email: result.local.email,
+							curUserBooks: r.books
 
-				})
+						})
+
+					})
+
+
 			})
 	}
 
 	this.updateUser = function (req, res) {
-		console.log(req.body)
 		Users
 			.findOneAndUpdate( { 'local.email': req.user.local.email }, {
 				'local.email': req.body.email,

@@ -59,7 +59,7 @@ module.exports = function (app, passport) {
 		});
 
 
-	app.put('/updateUser', clickHandler.updateUser)
+	app.put('/updateUser', clickHandler.updateUser);
 
 
 	app.get('/users', clickHandler.getUsers)
