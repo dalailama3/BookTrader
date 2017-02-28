@@ -1,45 +1,15 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var path = process.cwd();
+
 
 function ClickHandler () {
-
-	this.getClicks = function (req, res) {
-		Users
-			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
-			.exec(function (err, result) {
-				if (err) { throw err; }
-
-				res.json(result.nbrClicks);
-			});
-	};
-
-	this.addClick = function (req, res) {
-		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
-			.exec(function (err, result) {
-					if (err) { throw err; }
-
-					res.json(result.nbrClicks);
-				}
-			);
-	};
-
-	this.resetClicks = function (req, res) {
-		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-			.exec(function (err, result) {
-					if (err) { throw err; }
-
-					res.json(result.nbrClicks);
-				}
-			);
-	};
 
 	this.addBook = function (req, res) {
 		var volumeId = req.params.bookId
 		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { '$addToSet': { 'books': volumeId }})
+			.findOneAndUpdate({ 'local.email': req.user.local.email }, { '$addToSet': { 'books': volumeId }})
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
@@ -58,13 +28,44 @@ function ClickHandler () {
 
 	this.userBooks = function (req, res) {
 		Users
-			.findOne({ 'github.id': req.user.github.id })
+			.findOne({ 'local.email': req.user.local.email })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
 				res.render('pages/userBooks', {
 					books: result.books
+
 				})
+			})
+	}
+
+	this.showUserBooks = function (req, res) {
+		Users
+			.findOne({ 'local.email': req.params.email })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.render('pages/userBooks', {
+					books: result.books,
+					displayName: result.local.email
+
+				})
+			})
+	}
+
+	this.updateUser = function (req, res) {
+		console.log(req.body)
+		Users
+			.findOneAndUpdate( { 'local.email': req.user.local.email }, {
+				'local.email': req.body.email,
+				'local.name': req.body.name,
+				'local.city': req.body.city,
+				'local.state': req.body.state
+			})
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.sendFile(path + '/public/profile.html')
 			})
 	}
 

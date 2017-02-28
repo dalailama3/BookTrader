@@ -6,15 +6,21 @@
   </head>
 
   <body>
-    <h1>My Books</h1>
+    <% if (locals.displayName) { %>
+      <h1><%= locals.displayName %>'s Books</h1>
+    <% } else { %>
+      <h1>My Books</h1>
+    <% } %>
+
     <div class="hidden"><%= JSON.stringify(locals.books) %></div>
 
     <ul class="bookshelf"></ul>
 
 
 
-  <script type="text/javascript" src="common/ajax-functions.js"></script>
-  <script type="text/javascript" src="controllers/userBooks.client.js"></script>
+
+  <script type="text/javascript" src="../../common/ajax-functions.js"></script>
+  <script type="text/javascript" src="../../controllers/userBooks.client.js"></script>
   </body>
 
 

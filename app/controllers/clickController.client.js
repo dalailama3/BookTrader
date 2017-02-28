@@ -7,9 +7,14 @@
    function listUsers (data) {
      var usersList = document.querySelector('.users')
      var data = JSON.parse(data)
+     console.log(data)
      data.forEach((user)=> {
        var li  = document.createElement("li")
-       li.innerHTML = user.github.username
+       var a  = document.createElement("a")
+       a.setAttribute('href', `/users/${user.local.email}/books`)
+
+       a.innerHTML = user.local.email
+       li.append(a)
        usersList.append(li)
 
      })
