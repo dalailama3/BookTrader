@@ -3,27 +3,25 @@
   <head>
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
 
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <% if (locals.email) { %>
-      <h1><%= locals.email %>'s Books</h1>
-    <% } else { %>
-      <h1>My Books</h1>
-    <% } %>
+
+    <h1><%= locals.email %>'s Books</h1>
 
     <div class="books hidden"><%= JSON.stringify(locals.books) %></div>
     <div class="curUserBooks hidden"><%= JSON.stringify(locals.curUserBooks) %></div>
 
     <ul class="bookshelf"></ul>
-    <button class="trade">Offer Trade</button>
+
 
     <div class="trade-view">
       <div class="left">
         <ul class="bookshelf-curUser-list"></ul>
-
-
-
 
       </div>
 
@@ -33,7 +31,7 @@
       </div>
     </div>
 
-
+    <button class="trade">Make a Trade Request</button>
 
   <script type="text/javascript" src="../../common/ajax-functions.js"></script>
   <script type="text/javascript" src="../../controllers/userBooks.client.js"></script>
