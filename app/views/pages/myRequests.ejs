@@ -1,1 +1,24 @@
-<%= JSON.stringify(locals.requests) %>
+<html>
+  <head>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+    <div class="requests"><%= JSON.stringify(locals.requests) %></div>
+    <ul class="requestsList"></ul>
+
+
+    <script type="text/javascript" src="../../controllers/myRequests.client.js"></script>
+
+
+  </body>
+
+
+
+
+</html>

@@ -95,7 +95,7 @@
           }
 
           var tradeRequest = {
-            'requestedBooks': curUserList,
+            'requestedBooks': otherUserList,
             'offerBooks': curUserList,
             'status': 'pending'
 
