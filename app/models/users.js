@@ -13,7 +13,8 @@ var User = new Schema({
 		city: String,
 		state: String
 	},
-	 books: [String]
+	 books: [String],
+	 requests: [{}]
 });
 
 User.methods.generateHash = function (password) {

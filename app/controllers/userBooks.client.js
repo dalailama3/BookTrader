@@ -74,7 +74,6 @@
         })
 
         curUserList = arr
-        console.log(curUserList)
 
         var otherClicked = $('.bookshelf-otherUser-list .radio-option.click')
         var otherClicked = Array.prototype.slice.call(otherClicked)
@@ -85,7 +84,24 @@
         })
 
         otherUserList = otherArr
-        console.log(otherUserList)
+
+        if (otherUserList.length > 0 && curUserList.length > 0) {
+          var userEmail = $('.userEmail').text()
+          var tradeRequest = {
+            'otherParty': userEmail,
+            'offerBooks': curUserList,
+            'requestedBooks': otherUserList
+          }
+          $.ajax({
+            url: '/addTradeRequest',
+            method: 'POST',
+            data: tradeRequest
+          })
+          .done(function (msg) {
+            console.log(msg)
+          });
+
+        }
 
       })
 

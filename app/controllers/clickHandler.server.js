@@ -79,6 +79,16 @@ function ClickHandler () {
 			})
 	}
 
+	this.addTradeRequest = function (req, res) {
+		console.log(req.body)
+		res.end('hit /addTradeRequest')
+	// 	User
+	// 		.findOneAndUpdate( { 'local.email': req.user.local.email }, {
+	// 			'$push': {}
+	// 		})
+	// }
+	}
+
 }
 
 module.exports = ClickHandler;
