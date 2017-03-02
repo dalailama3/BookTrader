@@ -107,7 +107,29 @@ function ClickHandler () {
 	}
 
 	this.myTradeOffers = function (req, res) {
-		
+		Users
+		.findOne({ 'local.email': req.user.local.email })
+		.exec(function (err, result) {
+			if (err) { throw err; }
+
+			res.render('pages/myOffers', {
+				offers: result.offers
+
+			})
+		})
+	}
+
+	this.myTradeRequests = function (req, res) {
+		Users
+		.findOne({ 'local.email': req.user.local.email })
+		.exec(function (err, result) {
+			if (err) { throw err; }
+
+			res.render('pages/myRequests', {
+				requests: result.requests
+
+			})
+		})
 	}
 
 
