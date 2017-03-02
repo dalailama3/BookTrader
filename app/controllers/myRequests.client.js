@@ -23,14 +23,26 @@ $('document').ready(function () {
   }
 
   var requestsUl = $('.requestsList')
+
   requests.forEach((request)=> {
+    var requestId = request._id
     var $li = $('<li>', { 'class': 'tradeRequestLi'})
     var offeredBooks = request.offerBooks
     var requestedBooks = request.requestedBooks
     var sender = request.fromUserEmail
-    var $requestedBooksDiv = $('<div>', { 'class': 'requestedBooks', text: 'Requested'})
-    var $offeredBooksDiv = $('<div>', { 'class': 'requestedBooks', text: 'Offered'})
-    var $statusDiv = $('<div>', { 'class': 'tradeStatus', text: 'Status: ' + request.status})
+    var $requestedBooksDiv = $('<div>', { 'class': 'requestedBooks' })
+    var $offeredBooksDiv = $('<div>', { 'class': 'requestedBooks' })
+    var $statusDiv = $('<div>', { 'class': 'tradeStatus', text: request.status})
+
+    var $acceptTradeButton = $('<button>', { 'text': 'Accept'})
+
+    $acceptTradeButton.on('click', function () {
+      // $.ajax({
+      //   url: '/tradeRequests/' + requestId
+      // })
+      console.log('/tradeRequests/' + requestId)
+    })
+    $statusDiv.append($acceptTradeButton)
 
     requestedBooks.forEach((id)=> {
       getBookTitleAndImage(id, $requestedBooksDiv)
@@ -41,10 +53,7 @@ $('document').ready(function () {
     })
 
 
-
-    var liText = 'Offer sent from: ' + sender
-
-    var $requestParty = $('<div>',{ 'class': 'requestParty', text: liText })
+    var $requestParty = $('<div>',{ 'class': 'requestParty', text: sender })
     $li.append($requestParty)
     $li.append($requestedBooksDiv)
     $li.append($offeredBooksDiv)

@@ -14,7 +14,15 @@ var User = new Schema({
 		state: String
 	},
 	 books: [String],
-	 requests: [{}],
+	 requests: [
+		 {
+			 requestId: Schema.Types.ObjectId,
+			 requestedBooks: [String],
+			 fromUserEmail: String,
+			 offerBooks: [String],
+			 status: String
+		 }
+		],
 	 offers: [{}]
 
 });

@@ -262,3 +262,12 @@ button {
   align-items: center;
   justify-content: space-around;
 }
+
+header.trade-request, header.trade-offer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.requestedBooks, .offeredBooks {
+  display: flex;
+}

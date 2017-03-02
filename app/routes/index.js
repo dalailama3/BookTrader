@@ -64,6 +64,7 @@ module.exports = function (app, passport) {
 	app.post('/addTradeRequest/:email', clickHandler.addTradeRequest)
 	app.get('/myTradeOffers', clickHandler.myTradeOffers)
 	app.get('/myTradeRequests', clickHandler.myTradeRequests)
+	// app.get('/tradeRequests/:requestId', clickHandler.acceptTradeRequest)
 
 	app.get('/users', clickHandler.getUsers)
 

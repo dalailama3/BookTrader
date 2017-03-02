@@ -28,9 +28,9 @@ $('document').ready(function () {
     var offeredBooks = offer.offerBooks
     var requestedBooks = offer.requestedBooks
     var receiver = offer.otherParty
-    var $requestedBooksDiv = $('<div>', { 'class': 'requestedBooks', text: 'Requested'})
-    var $offeredBooksDiv = $('<div>', { 'class': 'offeredBooks', text: 'Offered'})
-    var $statusDiv = $('<div>', { 'class': 'tradeStatus', text: 'Status: ' + offer.status})
+    var $requestedBooksDiv = $('<div>', { 'class': 'requestedBooks'})
+    var $offeredBooksDiv = $('<div>', { 'class': 'offeredBooks'})
+    var $statusDiv = $('<div>', { 'class': 'tradeStatus', text: offer.status})
 
     requestedBooks.forEach((id)=> {
       getBookTitleAndImage(id, $requestedBooksDiv)
@@ -41,10 +41,7 @@ $('document').ready(function () {
     })
 
 
-
-    var liText = 'Offer sent to: ' + receiver
-
-    var $offerParty = $('<div>',{ 'class': 'offerParty', text: liText })
+    var $offerParty = $('<div>',{ 'class': 'offerParty', text: receiver})
     $li.append($offerParty)
     $li.append($offeredBooksDiv)
     $li.append($requestedBooksDiv)
