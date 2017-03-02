@@ -9,7 +9,7 @@
      var data = JSON.parse(data)
 
      var userEmail = document.querySelector('.userEmail').innerHTML
-    
+
      data.forEach((user)=> {
        if (user.local.email !== userEmail) {
          var li  = document.createElement("li")

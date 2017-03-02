@@ -1,1 +1,27 @@
-<%= JSON.stringify(locals.offers) %>
+<!doctype html>
+
+
+<html>
+  <head>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  </head>
+
+
+  <body>
+    <div class="offers"><%= JSON.stringify(locals.offers) %></div>
+    <ul class=offersList></ul>
+
+
+    <script type="text/javascript" src="../../controllers/myOffers.client.js"></script>
+
+
+  </body>
+
+
+
+
+</html>

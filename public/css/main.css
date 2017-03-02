@@ -256,3 +256,9 @@ button {
 .radio-option.click {
     background: url(http://toddlerwilliams.com/apps/Angular-SimplySocial/app/images/checkbox1.png) no-repeat 0px 0px;
 }
+
+.tradeOfferLi {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
