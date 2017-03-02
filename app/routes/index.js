@@ -60,7 +60,9 @@ module.exports = function (app, passport) {
 
 
 	app.put('/updateUser', clickHandler.updateUser);
-	app.post('/addTradeRequest', clickHandler.addTradeRequest)
+	app.post('/addTradeOffer', clickHandler.addTradeOffer)
+	app.post('/addTradeRequest/:email', clickHandler.addTradeRequest)
+	app.get('/myTradeOffers', clickHandler.myTradeOffers)
 
 	app.get('/users', clickHandler.getUsers)
 

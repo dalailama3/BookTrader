@@ -14,7 +14,9 @@ var User = new Schema({
 		state: String
 	},
 	 books: [String],
-	 requests: [{}]
+	 requests: [{}],
+	 offers: [{}]
+
 });
 
 User.methods.generateHash = function (password) {

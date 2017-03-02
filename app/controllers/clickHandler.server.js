@@ -79,15 +79,37 @@ function ClickHandler () {
 			})
 	}
 
-	this.addTradeRequest = function (req, res) {
-		console.log(req.body)
-		res.end('hit /addTradeRequest')
-	// 	User
-	// 		.findOneAndUpdate( { 'local.email': req.user.local.email }, {
-	// 			'$push': {}
-	// 		})
-	// }
+	this.addTradeOffer = function (req, res) {
+		Users
+			.findOneAndUpdate( { 'local.email': req.user.local.email }, {
+				'$push': { 'offers': req.body }
+			}, { 'new': true })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.json({ offers: result.offers })
+			})
 	}
+
+	this.addTradeRequest = function (req, res) {
+
+		var request = req.body
+		request['fromUserEmail'] = req.user.local.email
+		Users
+			.findOneAndUpdate( { 'local.email': req.params.email }, {
+				'$push': { 'requests': request }
+			}, { 'new': true })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.json({ requests: result.requests })
+			})
+	}
+
+	this.myTradeOffers = function (req, res) {
+		
+	}
+
 
 }
 

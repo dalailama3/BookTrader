@@ -87,18 +87,39 @@
 
         if (otherUserList.length > 0 && curUserList.length > 0) {
           var userEmail = $('.userEmail').text()
-          var tradeRequest = {
+          var tradeOffer = {
             'otherParty': userEmail,
             'offerBooks': curUserList,
-            'requestedBooks': otherUserList
+            'requestedBooks': otherUserList,
+            'status': 'pending'
+          }
+
+          var tradeRequest = {
+            'requestedBooks': curUserList,
+            'offerBooks': curUserList,
+            'status': 'pending'
+
           }
           $.ajax({
-            url: '/addTradeRequest',
+            url: '/addTradeOffer',
             method: 'POST',
-            data: tradeRequest
+            data: tradeOffer,
+            dataType: 'json'
           })
-          .done(function (msg) {
-            console.log(msg)
+          .done(function (d) {
+            console.log("trade offer sent", d)
+
+          });
+
+          $.ajax({
+            url: '/addTradeRequest/' + userEmail,
+            method: 'POST',
+            data: tradeRequest,
+            dataType: 'json'
+          })
+          .done(function (d) {
+            console.log("trade request received", d)
+
           });
 
         }
