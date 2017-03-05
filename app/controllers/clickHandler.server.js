@@ -4,6 +4,17 @@ var Users = require('../models/users.js');
 var path = process.cwd();
 
 
+function findAndRemoveEl(el, arr) {
+  for (var i=0; i < arr.length; i++) {
+    if (arr[i] === el) {
+      arr.splice(i, 1);
+      break;
+    }
+  }
+  return arr;
+}
+
+
 function ClickHandler () {
 
 	this.addBook = function (req, res) {
@@ -131,6 +142,102 @@ function ClickHandler () {
 			})
 		})
 	}
+
+
+		this.acceptTradeRequest = function (req, res) {
+			var self = this;
+			var completeUrl = req.url + '/complete'
+			var tradeRequestId = req.params.requestId
+			Users
+				.findOne({'requests': { $elemMatch: { '_id': tradeRequestId }}}, {
+					'requests.$': 1,
+					'books': 1
+				})
+				.exec(function (err, result) {
+					if (err) { throw err; }
+					var books = result.books
+					var fromUser = result.requests[0].fromUserEmail
+
+					var offeredBooks = result.requests[0].offerBooks
+					console.log("offered books in trade: ", offeredBooks)
+
+					var requestedBooks = result.requests[0].requestedBooks
+
+					console.log("requested books in trade: ", requestedBooks)
+					offeredBooks.forEach((book)=> {
+						books.push(book)
+					})
+					requestedBooks.forEach((book)=> {
+						findAndRemoveEl(book, books)
+					})
+
+					console.log("current user's books: ", books)
+					Users
+						.findOneAndUpdate({'local.email': req.user.local.email }, { $set: { 'books': books }})
+							.exec(function (err, r) {
+								if (err) { throw err; }
+								console.log(r.books === books)
+								res.redirect(completeUrl)
+							})
+
+
+
+				})
+
+			}
+
+
+					this.completeTradeRequest = function (req, res) {
+						console.log("completing the trade")
+
+						var tradeRequestId = req.params.requestId
+
+
+						Users
+							.findOne({'requests': { $elemMatch: { '_id': tradeRequestId }}}, {
+								'requests.$': 1,
+								'books': 1
+							})
+							.exec(function (err, result) {
+								if (err) { throw err; }
+								var fromUser = result.requests[0].fromUserEmail
+
+								var offeredBooks = result.requests[0].offerBooks
+								console.log("offered books: ", offeredBooks)
+
+								var requestedBooks = result.requests[0].requestedBooks
+								console.log("requested books: ", requestedBooks)
+
+								Users
+									.findOne({'local.email': fromUser})
+										.exec(function (err, r) {
+											if (err) { throw err; }
+											var otherBooks = r.books
+
+											requestedBooks.forEach((book)=> {
+												otherBooks.push(book)
+											})
+											offeredBooks.forEach((book)=> {
+												findAndRemoveEl(book, otherBooks)
+											})
+
+											console.log("other user's books: ", otherBooks)
+
+											Users.findOneAndUpdate({'local.email': fromUser}, { $set: { 'books': otherBooks }})
+											.exec(function (err, user) {
+												if (err) { throw err; }
+
+												res.send(user)
+
+											})
+
+										})
+
+
+
+							})
+
+					}
 
 
 }

@@ -37,10 +37,13 @@ $('document').ready(function () {
     var $acceptTradeButton = $('<button>', { 'text': 'Accept'})
 
     $acceptTradeButton.on('click', function () {
-      // $.ajax({
-      //   url: '/tradeRequests/' + requestId
-      // })
-      console.log('/tradeRequests/' + requestId)
+      $.ajax({
+        url: '/tradeRequests/' + requestId,
+        dataType: 'json'
+      })
+      .done(function (d) {
+        console.log(d)
+      })
     })
     $statusDiv.append($acceptTradeButton)
 
@@ -55,10 +58,14 @@ $('document').ready(function () {
 
     var $requestParty = $('<div>',{ 'class': 'requestParty', text: sender })
     $li.append($requestParty)
-    $li.append($requestedBooksDiv)
     $li.append($offeredBooksDiv)
+    $li.append($requestedBooksDiv)
     $li.append($statusDiv)
-    requestsUl.append($li)
+
+    if (request.status === 'pending') {
+      requestsUl.append($li)
+
+    }
 
 
 

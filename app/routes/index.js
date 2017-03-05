@@ -27,13 +27,13 @@ module.exports = function (app, passport) {
 		});
 
 	app.post('/login', passport.authenticate('local-login', {
-       successRedirect : '/', // redirect to the secure profile section
+       successRedirect : '/',
        failureRedirect : '/login', // redirect back to the signup page if there is an error
        failureFlash : true // allow flash messages
    }));
 
 	app.post('/signup', passport.authenticate('local-signup', {
-			 successRedirect : '/login', // redirect to the secure profile section
+			 successRedirect : '/', // redirect to the secure profile section
 			 failureRedirect : '/signup', // redirect back to the signup page if there is an error
 			 failureFlash : true // allow flash messages
  	 }));
@@ -59,12 +59,18 @@ module.exports = function (app, passport) {
 		});
 
 
+	app.get('/tradeRequests/:requestId', clickHandler.acceptTradeRequest)
+	app.get('/tradeRequests/:requestId/complete', clickHandler.completeTradeRequest)
+
+
+
 	app.put('/updateUser', clickHandler.updateUser);
 	app.post('/addTradeOffer', clickHandler.addTradeOffer)
 	app.post('/addTradeRequest/:email', clickHandler.addTradeRequest)
 	app.get('/myTradeOffers', clickHandler.myTradeOffers)
+
 	app.get('/myTradeRequests', clickHandler.myTradeRequests)
-	// app.get('/tradeRequests/:requestId', clickHandler.acceptTradeRequest)
+
 
 	app.get('/users', clickHandler.getUsers)
 
