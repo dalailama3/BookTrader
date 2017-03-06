@@ -12,6 +12,7 @@
 
     var $booksUl = $('.bookshelf')
     var $rightUl = $('.bookshelf-otherUser-list')
+    var $curUserImagesUl = $('.my-bookshelf-images')
 
 
     function listBooks (data) {
@@ -42,6 +43,12 @@
 
     function listCurUserBooks (data) {
       var data = JSON.parse(data)
+      var $li = $('<li>')
+      var $img = $("<img>", {
+        'src': data.volumeInfo.imageLinks.smallThumbnail
+      })
+
+
       var $leftUl = $('.bookshelf-curUser-list')
       var $leftLi = $("<li>", { 'class': 'trade'})
       var $radioDiv = $('<div>', { 'class': 'radio-option'})
@@ -53,7 +60,8 @@
 
       })
 
-
+      $li.append($img)
+      $curUserImagesUl.append($li)
       $leftLi.text(data.volumeInfo.title)
       $radioDiv.appendTo($leftLi)
       $leftUl.append($leftLi)

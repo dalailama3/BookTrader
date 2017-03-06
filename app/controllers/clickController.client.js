@@ -38,6 +38,7 @@
 
        if (book.volumeInfo.imageLinks) {
          var li = document.createElement("li")
+         li.setAttribute('class', 'bookLi')
          li.innerHTML = book.volumeInfo.title
 
          var img = document.createElement("img")
@@ -47,6 +48,7 @@
          var addButton = document.createElement("button")
          addButton.innerHTML = 'Add Book'
          addButton.setAttribute('data-bookId', book.id)
+         addButton.setAttribute('class', 'btn btn-default add-book-button')
 
          addButton.addEventListener('click', function (event) {
            console.log(this.getAttribute('data-bookId'))

@@ -264,6 +264,17 @@ p.lead {
 .app-title {
   color: white;
   font-size: 64px;
-  text-shadow: 2px 2px 5px black;
+  text-shadow: 5px 5px 10px black;
 
+}
+
+.bookLi {
+  color: #faebcc;
+  text-shadow: 3px 3px 3px black;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.add-book-button {
+  margin-top: 10px;
 }

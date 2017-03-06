@@ -12,23 +12,36 @@
   </head>
 
   <body>
+
+    <header>
+      <a class="menu" href="/">Home</a>
+      <p>|</p>
+      <a class="menu" href="/userBooks">My Books</a>
+      <p>|</p>
+      <a class="menu" href="/myTradeOffers">My Offers</a>
+      <p>|</p>
+      <a class="menu" href="/myTradeRequests">My Requests</a>
+      <p>|</p>
+      <a class="menu" href="/logout">Logout</a>
+    </header>
+
     <div class="userEmail hidden"><%= locals.email %></div>
     <div class="books hidden"><%= JSON.stringify(locals.books) %></div>
     <div class="curUserBooks hidden"><%= JSON.stringify(locals.curUserBooks) %></div>
 
-    <ul class="bookshelf"></ul>
 
 
     <div class="trade-view">
       <div class="left">
         <h1 class="left-title">My Books</h1>
+        <ul class="my-bookshelf-images"></ul>
         <ul class="bookshelf-curUser-list"></ul>
 
       </div>
 
       <div class="right">
         <h1 class="right-title"><%= locals.email %>'s Books</h1>
-
+        <ul class="bookshelf"></ul>
         <ul class="bookshelf-otherUser-list"></ul>
 
       </div>
