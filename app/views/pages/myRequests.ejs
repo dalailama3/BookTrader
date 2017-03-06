@@ -9,7 +9,17 @@
 
 
   <body>
-    <div class="requests"><%= JSON.stringify(locals.requests) %></div>
+    <div class="requests hidden"><%= JSON.stringify(locals.requests) %></div>
+
+    <header>
+      <a class="menu" href="/">Home</a>
+      <p>|</p>
+      <a class="menu" href="/userBooks">My Books</a>
+      <p>|</p>
+      <a class="menu" href="/myTradeOffers">My Offers</a>
+      <p>|</p>
+      <a class="menu" href="/logout">Logout</a>
+    </header>
     <header class="trade-request">
       <h1>Offer Sent From: </h1>
       <h1>Offered</h1>

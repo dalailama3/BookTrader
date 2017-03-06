@@ -12,7 +12,17 @@
 
 
   <body>
-    <div class="offers"><%= JSON.stringify(locals.offers) %></div>
+    <div class="offers hidden"><%= JSON.stringify(locals.offers) %></div>
+    <header>
+      <a class="menu" href="/">Home</a>
+      <p>|</p>
+      <a class="menu" href="/userBooks">My Books</a>
+      <p>|</p>
+      <a class="menu" href="/myTradeRequests">My Requests</a>
+      <p>|</p>
+      <a class="menu" href="/logout">Logout</a>
+    </header>
+
     <header class="trade-offer">
       <h1>Offer Sent To: </h1>
       <h1>Offered</h1>
