@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	</head>
 
+
 	<header>
 		<a class="menu" href="/profile">Profile</a>
 		<p>|</p>
@@ -22,20 +23,26 @@
 		<a class="menu" href="/logout">Logout</a>
 	</header>
 
-	<body>
+	<body style="background: url('http://static.boredpanda.com/blog/wp-content/uploads/2016/03/trinity-college-long-room-library-dublin-12.jpg'); background-size: cover;">
 		<div class="userEmail hidden"><%= locals.userEmail %></div>
 
-		<div class="container">
-			<p>Search for books using the Google Books Api</p>
-			<form class="searchBooks">
+		<!-- <div class="jumbotron jumbotron-fluid"> -->
+		  <div class="container">
+				<h1 class="app-title">BookTradr</h1>
+		    <p class="lead">Search for books using Google's Books API.  See other users' books, make trade propsals, and consider trade requests that are sent to you.</p>
+		  </div>
+		<!-- </div> -->
 
-				<input class="searchTerm"></input>
-				<input type="submit"></input>
+			<form class="searchBooks">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon glyphicon glyphicon-search"></span>
+					<input type="text" placeholder='Search for books' class="form-control searchTerm"></input>
+				</div>
+
 			</form>
 
-		</div>
 
-		<ul class="users">
+		<ul class="users list-group">
 		</ul>
 
 		<ul class="books">

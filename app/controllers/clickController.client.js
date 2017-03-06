@@ -12,13 +12,14 @@
 
      data.forEach((user)=> {
        if (user.local.email !== userEmail) {
-         var li  = document.createElement("li")
+        //  var li  = document.createElement("li")
          var a  = document.createElement("a")
+         a.setAttribute('class', 'list-group-item user-a')
          a.setAttribute('href', `/users/${user.local.email}/books`)
 
          a.innerHTML = user.local.email
-         li.append(a)
-         usersList.append(li)
+        //  li.append(a)
+         usersList.append(a)
 
        }
 
