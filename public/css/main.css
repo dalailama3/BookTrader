@@ -239,10 +239,26 @@ button {
   cursor: pointer;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+button.trade {
+  margin-top: 20px;
+  width: 25%;
+}
+
 .trade-view {
   display: flex;
-  border: 1px solid green;
+  justify-content: space-around;
 
+}
+
+.left, .right {
+  width: 100%;
+  text-align: center;
+  border: 1px solid black;
 }
 
 .radio-option {

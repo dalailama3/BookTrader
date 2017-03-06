@@ -7,11 +7,11 @@
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
   </head>
 
   <body>
-
-    <h1><%= locals.email %>'s Books</h1>
     <div class="userEmail hidden"><%= locals.email %></div>
     <div class="books hidden"><%= JSON.stringify(locals.books) %></div>
     <div class="curUserBooks hidden"><%= JSON.stringify(locals.curUserBooks) %></div>
@@ -21,18 +21,24 @@
 
     <div class="trade-view">
       <div class="left">
+        <h1 class="left-title">My Books</h1>
         <ul class="bookshelf-curUser-list"></ul>
 
       </div>
 
       <div class="right">
+        <h1 class="right-title"><%= locals.email %>'s Books</h1>
+
         <ul class="bookshelf-otherUser-list"></ul>
 
       </div>
     </div>
 
-    <button class="trade">Make a Trade Request</button>
+    <div class="button-container">
 
+    <button type="button" class="trade btn btn-primary btn-lg"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Offer Trade</button>
+
+    </div>
   <script type="text/javascript" src="../../common/ajax-functions.js"></script>
   <script type="text/javascript" src="../../controllers/userBooks.client.js"></script>
   </body>
