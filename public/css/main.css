@@ -160,6 +160,13 @@ ul.bookshelf {
   flex-flow: row;
 }
 
+ul.my-bookshelf-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-flow: row;
+}
+
 ul.books {
   display: flex;
   align-items: center;

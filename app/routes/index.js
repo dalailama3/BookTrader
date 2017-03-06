@@ -58,25 +58,25 @@ module.exports = function (app, passport) {
 			res.json(req.user.local);
 		});
 
-
 	app.get('/tradeRequests/:requestId', clickHandler.acceptTradeRequest)
+
 	app.get('/tradeRequests/:requestId/complete', clickHandler.completeTradeRequest)
 
-
-
 	app.put('/updateUser', clickHandler.updateUser);
+
 	app.post('/addTradeOffer', clickHandler.addTradeOffer)
+
 	app.post('/addTradeRequest/:email', clickHandler.addTradeRequest)
+
 	app.get('/myTradeOffers', clickHandler.myTradeOffers)
 
 	app.get('/myTradeRequests', clickHandler.myTradeRequests)
-
 
 	app.get('/users', clickHandler.getUsers)
 
 	app.get('/userBooks', clickHandler.userBooks)
 
 	app.get('/users/:email/books', clickHandler.showUserBooks)
-
+	
 	app.post('/addBook/:bookId', clickHandler.addBook);
 }

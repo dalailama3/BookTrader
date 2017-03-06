@@ -159,11 +159,11 @@ function ClickHandler () {
 					var fromUser = result.requests[0].fromUserEmail
 
 					var offeredBooks = result.requests[0].offerBooks
-					console.log("offered books in trade: ", offeredBooks)
+					// console.log("offered books in trade: ", offeredBooks)
 
 					var requestedBooks = result.requests[0].requestedBooks
 
-					console.log("requested books in trade: ", requestedBooks)
+					// console.log("requested books in trade: ", requestedBooks)
 					offeredBooks.forEach((book)=> {
 						books.push(book)
 					})
@@ -171,12 +171,11 @@ function ClickHandler () {
 						findAndRemoveEl(book, books)
 					})
 
-					console.log("current user's books: ", books)
+					// console.log("current user's books: ", books)
 					Users
 						.findOneAndUpdate({'local.email': req.user.local.email }, { $set: { 'books': books }})
 							.exec(function (err, r) {
 								if (err) { throw err; }
-								console.log(r.books === books)
 								res.redirect(completeUrl)
 							})
 
@@ -188,7 +187,6 @@ function ClickHandler () {
 
 
 					this.completeTradeRequest = function (req, res) {
-						console.log("completing the trade")
 
 						var tradeRequestId = req.params.requestId
 
@@ -200,13 +198,12 @@ function ClickHandler () {
 							})
 							.exec(function (err, result) {
 								if (err) { throw err; }
+
 								var fromUser = result.requests[0].fromUserEmail
 
 								var offeredBooks = result.requests[0].offerBooks
-								console.log("offered books: ", offeredBooks)
 
 								var requestedBooks = result.requests[0].requestedBooks
-								console.log("requested books: ", requestedBooks)
 
 								Users
 									.findOne({'local.email': fromUser})
@@ -221,13 +218,18 @@ function ClickHandler () {
 												findAndRemoveEl(book, otherBooks)
 											})
 
-											console.log("other user's books: ", otherBooks)
-
 											Users.findOneAndUpdate({'local.email': fromUser}, { $set: { 'books': otherBooks }})
 											.exec(function (err, user) {
 												if (err) { throw err; }
 
-												res.send(user)
+                        Users
+            							.findOneAndUpdate({'requests': { $elemMatch: { '_id': tradeRequestId }}}, {
+            								'requests.$.status': 'accepted'
+            							})
+            							.exec(function (err, result) {
+            								if (err) { throw err; }
+                            res.send(result)
+                          })
 
 											})
 
